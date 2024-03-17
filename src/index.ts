@@ -15,6 +15,12 @@ const client = new Client({
 client.once(Events.ClientReady, async (client) => {
 	console.log(`✅ Ready! Logged in as ${client.user?.tag}`);
 	commands = await registerCommands(slashCommands);
+
+	let serverIconIndex = 0
+	setInterval(()=>{
+		client.guilds.cache.get('814810394912358430')?.setIcon(`src/img/logo_${serverIconIndex+1}.jpg`)
+		serverIconIndex = (serverIconIndex + 1) % 15
+	},10*60*1000)
 });
 
 client.on("interactionCreate", async (interaction: BaseInteraction) => {
