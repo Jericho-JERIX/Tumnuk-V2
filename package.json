@@ -1,0 +1,33 @@
+{
+	"dependencies": {
+		"axios": "^1.4.0",
+		"discord.js": "^14.10.2",
+		"dotenv": "^16.0.3"
+	},
+	"name": "docket-bot",
+	"version": "1.0.0",
+	"main": "build/index.js",
+	"devDependencies": {
+		"@types/node": "^20.1.7",
+		"nodemon": "^2.0.22",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.0.4"
+	},
+	"scripts": {
+		"build": "tsc",
+		"start": "node .",
+		"dev": "nodemon --config nodemon.json src/index.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Jericho-JERIX/Docket-Bot.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Jericho-JERIX/Docket-Bot/issues"
+	},
+	"homepage": "https://github.com/Jericho-JERIX/Docket-Bot#readme",
+	"description": ""
+}
