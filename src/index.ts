@@ -4,6 +4,7 @@ import { registerCommands } from "./scripts/register";
 import { BaseInteraction } from "discord.js";
 import { SlashCommandObject } from "./scripts/types/SlashCommandObject";
 import { slashCommands } from "./commands";
+import { VoiceChannelConnectionEmbed } from "./components/VoiceChannelConnectionEmbed";
 
 dotenv.config();
 let commands: SlashCommandObject;
@@ -46,15 +47,38 @@ client.on("voiceStateUpdate", (oldState, newState) => {
 		return
 	}
 
+	const guildMember = newState.member
+
+	if (!guildMember) {
+		return
+	}
+
+	let state: "join" | "leave" | "move" | undefined = undefined;
+
 	if (!oldState.channel && newState.channel) {
-		(client.channels.cache.get(logTextChannelId) as TextChannel).send(`<@${newState.member?.user.id}> joined a <#${newState.channelId}>`)
+		state = "join"
 	}
 	else if (oldState.channel && !newState.channel) {
-		(client.channels.cache.get(logTextChannelId) as TextChannel).send(`<@${newState.member?.user.id}> left a <#${oldState.channelId}>`)
+		state = "leave"
 	}
 	else if (oldState.channelId !== newState.channelId) {
-		(client.channels.cache.get(logTextChannelId) as TextChannel).send(`<@${newState.member?.user.id}> moved from <#${oldState.channelId}> to <#${newState.channelId}>`)
+		state = "move"
 	}
+	
+	if (!state) {
+		return
+	}
+
+	(client.channels.cache.get(logTextChannelId) as TextChannel).send({
+		embeds: [
+			VoiceChannelConnectionEmbed({
+				guildMember: guildMember,
+				oldVoiceState: oldState,
+				newVoiceState: newState,
+				state: state
+			})
+		]
+	})
 })
 
 client.login(process.env.TOKEN);
