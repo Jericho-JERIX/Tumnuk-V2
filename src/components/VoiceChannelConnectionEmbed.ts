@@ -16,7 +16,7 @@ export function VoiceChannelConnectionEmbed({
     const date = new Date()
 
     const embed = new EmbedBuilder()
-    .setFooter({ text: date.toLocaleString("en-US", { timeZone: "Asia/Bangkok", hour12: false }) })
+    .setFooter({ text: date.toLocaleString("en-GB", { timeZone: "Asia/Bangkok", hour12: false }) })
     
     if (state === "join") {
         embed
