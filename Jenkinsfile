@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         ENV_FILE=credentials('tumnuk-env-file')
-        PORT=8009
+        PORT=8010
         IMAGE_NAME='tumnuk-prod'
         CONTAINER_NAME='tumnuk_prod_container'
     }
