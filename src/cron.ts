@@ -25,7 +25,9 @@ export default class Cron {
                 } catch (error) {
                     console.error(error)
                 }
-            }
+            },
+            start: true,
+            timeZone: 'Asia/Bangkok'
         })
     }
 }
