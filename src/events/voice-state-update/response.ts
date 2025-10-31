@@ -1,0 +1,1 @@
+export type UserVoiceState = "join" | "leave" | "move" | undefined
